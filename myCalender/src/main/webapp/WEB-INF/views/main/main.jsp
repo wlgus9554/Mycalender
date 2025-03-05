@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <title>Main</title>
 </head>
 <body>
@@ -15,8 +16,14 @@
     	<div class="alert alert-success">${msg}</div>
 	</c:if>
 	
+	<!-- 로그인이 아닌 상태일때 보여줌 -->
 	<c:if test="${login == null}">
-		<a href="/member/loginForm.do">로그인</a>
+		<a href="/member/loginForm.do" class="btn btn-dark">로그인</a>
+	</c:if>
+	
+	<!-- 로그인 상태일때 보여줌 -->
+	<c:if test="${login != null}">
+		<a href="/member/logout.do" class="btn btn-dark">로그아웃</a>
 	</c:if>
 	
 </div>

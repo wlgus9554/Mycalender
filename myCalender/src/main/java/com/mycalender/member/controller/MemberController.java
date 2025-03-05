@@ -52,5 +52,17 @@ public class MemberController {
 		
 		return "redirect:/main/main.do";
 	}
+	
+	@GetMapping("/logout.do")
+	public String logout( HttpSession session, 
+			RedirectAttributes rttr) {
+		log.info("logout..................");
+		
+		session.removeAttribute("login");
+		
+		rttr.addFlashAttribute("msg", "로그아웃 되었습니다.");
+		
+		return "redirect:/main/main.do";
+	}
 
 }
