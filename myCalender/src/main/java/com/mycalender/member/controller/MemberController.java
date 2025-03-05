@@ -50,7 +50,7 @@ public class MemberController {
 		session.setAttribute("login", loginVO);
 		rttr.addFlashAttribute("msg", loginVO.getNickName() + "님이 접속하였습니다.");
 		
-		return "redirect:/main";
+		return "redirect:/main/main.do";
 	}
 
 }
