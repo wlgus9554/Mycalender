@@ -6,10 +6,14 @@
     <select id="login" parameterType="com.mycalender.member.vo.LoginVO"
         resultType="com.mycalender.member.vo.LoginVO">
     SELECT 
-        m.email, m.name, m.image, m.gradeNo, g.gradeName, m.nickName
-    FROM member m, grade g
-    WHERE (m.email = #{email} AND m.password = #{password})  
-    AND (m.gradeNo = g.gradeNo)
+        email, name, image, grade, nickName
+    FROM member 
+    WHERE email = #{email} AND password = #{password}
+    
 </select>
+<insert id="join" parameterType="com.mycalender.member.vo.MemberVO">
+    INSERT INTO member (email, nickName, name, password, birth, gender, tel, city, image, grade)
+    VALUES (#{email}, #{nickName}, #{name}, #{password}, #{birth}, #{gender}, #{tel}, #{city}, #{image}, #{grade})
+</insert>
 
 </mapper>

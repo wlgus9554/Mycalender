@@ -25,6 +25,9 @@
 	<c:if test="${login != null}">
 		<a href="/member/logout.do" class="btn btn-dark">로그아웃</a>
 	</c:if>
+	<c:if test="${login == null}">
+		<a href="/member/joinForm.do" class="btn btn-dark">회원가입</a>
+	</c:if>
 	
 </div>
 </body>
