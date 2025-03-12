@@ -22,8 +22,8 @@
     <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
         <property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" />
         <property name="jdbcUrl" value="jdbc:log4jdbc:oracle:thin:@localhost:1521:XE" />
-        <property name="username" value="myCalender" />
-        <property name="password" value="myCalender" />
+        <property name="username" value="myCalendar" />
+        <property name="password" value="myCalendar" />
     </bean>
 
     <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
@@ -40,10 +40,10 @@
 
     <tx:annotation-driven/>
 
-    <mybatis-spring:scan base-package="com.mycalender"/>
+    <mybatis-spring:scan base-package="com.mycalendar"/>
 
     <context:annotation-config></context:annotation-config>
-    <context:component-scan base-package="com.mycalender" />
+    <context:component-scan base-package="com.mycalendar" />
 
     <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 

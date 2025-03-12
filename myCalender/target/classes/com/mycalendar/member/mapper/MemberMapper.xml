@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mycalendar.member.mapper.MemberMapper"> <!-- ✅ namespace 수정 -->
+	
+	<select id="memberList" parameterType="map"
+    resultType="com.mycalendar.member.vo.MemberVO">
+	<![CDATA[
+		select email, name, nickName, gender, birth, grade
+		from (
+			select rownum rnum, email, name, nickName, gender, birth, grade
+			from (
+				SELECT m.email, m.name, m.nickName, m.gender, m.birth, m.grade
+				FROM member m
+				)
+			)
+				where rnum between #{startRow, jdbcType=INTEGER} and #{endRow, jdbcType=INTEGER}
+	]]>
+	</select>
+	<select id="getTotalRow" parameterType="com.mycalendar.util.page.PageObject" resultType="java.lang.Long">
+	    select count(*) from member
+	     <where>
+	        <if test="key != null and word != null">
+	            AND ${key} LIKE '%' || #{word} || '%'
+	        </if>
+	    </where>
+	</select>
+	
+	<select id="view" parameterType="string" resultType="com.mycalendar.member.vo.MemberVO">
+		select 
+		    email, name, nickName, gender, birth, tel, grade, 
+		    city, regDate, last_login, status, image
+		    from member where email = #{email}
+	</select>
+
+
+	
+	<!-- 로그인 -->
+    <select id="login" parameterType="com.mycalendar.member.vo.LoginVO"
+        resultType="com.mycalendar.member.vo.LoginVO">
+	    SELECT 
+	        email, name, image, grade, nickName, password
+	    FROM member 
+	    WHERE email = #{email}
+	</select>
+	
+	<!-- 회원가입 -->
+	<insert id="join" parameterType="com.mycalendar.member.vo.MemberVO">
+	    INSERT INTO member (email, nickName, name, password, birth, gender, tel, city, image, grade)
+	    VALUES (#{email}, #{nickName}, #{name}, #{password}, #{birth}, #{gender}, #{tel}, #{city}, #{image}, #{grade})
+	</insert>
+
+</mapper>

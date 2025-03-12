@@ -16,17 +16,24 @@
     	<div class="alert alert-success">${msg}</div>
 	</c:if>
 	
-	<!-- 로그인이 아닌 상태일때 보여줌 -->
+	<!-- 로그인이 아닌 상태일때 보여지는 로그인 버튼 -->
 	<c:if test="${login == null}">
-		<a href="/member/loginForm.do" class="btn btn-dark">로그인</a>
+		<a href="/member/loginForm.do" class="btn btn-dark">Login</a>
 	</c:if>
 	
-	<!-- 로그인 상태일때 보여줌 -->
+	<!-- 로그인 상태일때 보여지는 로그아웃 버튼 -->
 	<c:if test="${login != null}">
-		<a href="/member/logout.do" class="btn btn-dark">로그아웃</a>
+		<a href="/member/logout.do" class="btn btn-dark">Logout</a>
 	</c:if>
+	
+	<!-- 로그인이 아닌 상태일때 보여지는 회원가입 버튼 -->
 	<c:if test="${login == null}">
-		<a href="/member/joinForm.do" class="btn btn-dark">회원가입</a>
+		<a href="/member/joinForm.do" class="btn btn-dark">Join</a>
+	</c:if>
+	
+	<!-- 관리자로 접속하면 보이는 회원리스트 버튼 -->
+	<c:if test="${not empty login and login.grade == 'admin'}">
+		<a href="/member/memberList.do" class="btn btn-dark">Member List</a>
 	</c:if>
 	
 </div>
